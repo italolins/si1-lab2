@@ -1,0 +1,94 @@
+@(mensagem: String)(meta: String)(usuario : Usuario)
+
+<html>
+<head>
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+<meta>
+	<title>Metas Mak</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>SI1</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<div class = "col-lg-4"></div>
+	<div class = "col-lg-4">
+	<form action = "/adicionaMeta" method = "post">
+		<h1 style = "text-align:center">Metas Mak</h2>
+		<div class = "jumbotron" style = "text-align:center">
+		<p style = "text-align:center">Adicione aqui uma nova meta</p>
+		<input type = "text" placeholder = "Meta" name = "nomeMeta" required/><br>
+		<input type = "text" placeholder = "Descrição" name = "descricao" /><br>
+		<input type = "text" placeholder = "Dia" name = "dia" required/><br>
+		<input type = "text" placeholder = "Mês" name = "mes" required/><br>
+		<select name = "prioridade" required/>
+			<option value = "1"/>Alta
+			<option value = "2"/>Media
+			<option value = "3"/>Baixa
+		</select><br>
+		<button class="btn btn-lg btn-info" id = "adicionar" type = "submit">Adicionar</button><br>
+		</div>
+	</form>
+	</div>
+	<div class = "col-lg-4"></div>
+	<br>
+	<div class = "col-lg-6">
+		
+		<div class = "jumbotron" >
+			<h2 style="text-align: center">Metas</h2>
+			<div class = "table-responsive">
+		
+				<table class = "table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for(meta <- usuario.getMetas()){
+							<form  action="/remove" method = "post">
+								<tr>
+								<th>@meta.getPrioridade()</th>
+								<th>@meta.getNomeMeta()</th>
+								<th><input class="btn btn-xs btn-info" type="submit" name= @meta.getNomeMeta() value="Remover">
+								<input class="btn btn-xs btn-info" type="submit" name= "meta" value="Alcançado"></th>
+							</form>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class = "col-lg-6">
+		<div class = "jumbotron">
+			<h2 style = "text-align:center">Metas Alcançadas</h2>
+			@for(meta <- usuario.getMetasAlcancadas()) {
+				<h3  style = "text-align:center">@meta.getNomeMeta()</h3><br>
+			}
+		</div>
+	</div>
+	
+</body>
+
+</html>
