@@ -37,4 +37,13 @@ public class Application extends Controller {
     	
     	return ok(index.render("Ta começando a frunfar",nome,null));
     }
+    
+    public static Result metaAlcancada(){
+    	DynamicForm requestData = Form.form().bindFromRequest();
+    	
+    	String nome = requestData.get("name");
+    	usuario.metaAlcancada(nome);;
+    	
+    	return ok(index.render("Ta começando a frunfar",nome,null));
+    }
 }

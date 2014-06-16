@@ -12,25 +12,16 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>SI1</title>
-
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="justified-nav.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
+	
 	<div class = "col-lg-4"></div>
 	<div class = "col-lg-4">
 	<form action = "/adicionaMeta" method = "post">
@@ -39,7 +30,39 @@
 		<p style = "text-align:center">Adicione aqui uma nova meta</p>
 		<input type = "text" placeholder = "Meta" name = "nomeMeta" required/><br>
 		<input type = "text" placeholder = "Descrição" name = "descricao" /><br>
-		<input type = "text" placeholder = "Dia" name = "dia" required/><br>
+		<select name = "dia" required>
+			<option value = "1"/>01
+			<option value = "2"/>02
+			<option value = "3"/>03
+			<option value = "4"/>04
+			<option value = "5"/>05
+			<option value = "6"/>06
+			<option value = "7"/>07
+			<option value = "8"/>08
+			<option value = "9"/>09
+			<option value = "10"/>10
+			<option value = "11"/>11
+			<option value = "12"/>12
+			<option value = "13"/>13
+			<option value = "14"/>14
+			<option value = "15"/>15
+			<option value = "16"/>16
+			<option value = "17"/>17
+			<option value = "18"/>18
+			<option value = "19"/>19
+			<option value = "20"/>20
+			<option value = "21"/>21
+			<option value = "22"/>22
+			<option value = "23"/>23
+			<option value = "24"/>24
+			<option value = "25"/>25
+			<option value = "26"/>26
+			<option value = "27"/>27
+			<option value = "28"/>28
+			<option value = "29"/>29
+			<option value = "30"/>30
+			<option value = "31"/>31
+		</select>
 		<select name = "mes" required>
 			<option value = "1"/>Janeiro
 			<option value = "2"/>Fevereiro
@@ -80,12 +103,16 @@
 					</thead>
 					<tbody>
 						@for(meta <- usuario.getMetas()){
-							<form  action="/remove" method = "post">
-								<tr>
-								<th>@meta.getPrioridade()</th>
-								<th>@meta.getNomeMeta()</th>
+							<tr>
+							<th>@meta.getPrioridade()</th>
+							<th>@meta.getNomeMeta()</th>
+								
+							<form action="/remove" method = "post">
 								<input type = "hidden" name = "meta" value = @meta.getNomeMeta()>
 								<th><input class="btn btn-xs btn-info" type="submit"  value="Remover">
+							</form>
+							<form action = "/alcancado" method = "post">
+								<input type = "hidden" name = "meta" value = @meta.getNomeMeta()>
 								<input class="btn btn-xs btn-info" type="submit" value="Alcançado"></th>
 							</form>
 						}
@@ -97,11 +124,24 @@
 	<div class = "col-lg-6">
 		<div class = "jumbotron">
 			<h2 style = "text-align:center">Metas Alcançadas</h2>
-			@for(meta <- usuario.getMetasAlcancadas()) {
-				<h3  style = "text-align:center">@meta.getNomeMeta()</h3><br>
-			}
+			<div class = "table-responsive">
+			<table class = "table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for(meta <- usuario.getMetasAlcancadas()){
+							<tr>
+							<th>@meta.getPrioridade()</th>
+							<th>@meta.getNomeMeta()</th>
+						}
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
 	
 </body>
 

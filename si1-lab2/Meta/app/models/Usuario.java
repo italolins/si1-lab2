@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,21 +40,37 @@ public class Usuario {
 	}
 
 	public boolean removeMeta(String nomeMeta) {
-		for (Meta meta : metas) {
+		Iterator<Meta> it = metas.iterator();
+		while(it.hasNext()){
+			Meta proximaMeta = it.next();
+			if(proximaMeta.getNomeMeta().equals(nomeMeta)){
+				it.remove();
+				return true;
+			}
+		}
+		/*for (Meta meta : metas) {
 			if(nomeMeta.equalsIgnoreCase(meta.getNomeMeta())){
 				return metas.remove(meta);
 			}
-		}
+		}*/
 		return false;
 	}
 
 	public void metaAlcancada(String nomeMeta) {
-		for (Meta meta : metas) {
+		Iterator<Meta> it = metas.iterator();
+		while(it.hasNext()){
+			Meta proximaMeta = it.next();
+			if(proximaMeta.getNomeMeta().equals(nomeMeta)){
+				metasAlcancadas.add((Meta)it);
+				//it.remove();
+			}
+		}
+		/*for (Meta meta : metas) {
 			if(nomeMeta.equals(meta.getNomeMeta())){
 				metas.remove(meta);
 				metasAlcancadas.add(meta);
 			}
-		}
+		}*/
 	}
 
 	public String getSenha() {

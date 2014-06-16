@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index()
 POST	/adicionaMeta				controllers.Application.adicionaMeta()
 POST	/remove						controllers.Application.removeMeta()
+POST	/alcancado					controllers.Application.metaAlcancada()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
