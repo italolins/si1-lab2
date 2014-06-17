@@ -34,26 +34,35 @@ public class Usuario {
 		metasAlcancadas = new ArrayList<Meta>();
 	}
 
-	public void addMeta(String nomeMeta, String Descricao, int dia, int mes, int prioridade) {
-		metas.add(new Meta(nomeMeta,Descricao,dia,mes,prioridade));
+	public void addMeta(String nomeMeta, String Descricao, int semana, int prioridade) {
+		metas.add(new Meta(nomeMeta,Descricao,semana,prioridade));
 		
 	}
 
 	public boolean removeMeta(String nomeMeta) {
 		Iterator<Meta> it = metas.iterator();
-		while(it.hasNext()){
+		/*while(it.hasNext()){
 			Meta proximaMeta = it.next();
-			if(proximaMeta.getNomeMeta().equals(nomeMeta)){
+			if(proximaMeta.getNomeMeta().equalsIgnoreCase(nomeMeta)){
 				it.remove();
-				return true;
-			}
-		}
-		/*for (Meta meta : metas) {
-			if(nomeMeta.equalsIgnoreCase(meta.getNomeMeta())){
-				return metas.remove(meta);
+				//return true;
 			}
 		}*/
-		return false;
+		
+		for (Meta meta : metas) {
+			if(meta.getNomeMeta().equalsIgnoreCase(nomeMeta)){
+				return metas.remove(meta);
+			}
+		}
+		
+		while(it.hasNext()){
+			Meta proximaMeta = it.next();
+			if(proximaMeta.getNomeMeta().equalsIgnoreCase(nomeMeta)){
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	public void metaAlcancada(String nomeMeta) {
@@ -61,8 +70,8 @@ public class Usuario {
 		while(it.hasNext()){
 			Meta proximaMeta = it.next();
 			if(proximaMeta.getNomeMeta().equals(nomeMeta)){
-				metasAlcancadas.add((Meta)it);
-				//it.remove();
+				metasAlcancadas.add(proximaMeta);
+				it.remove();
 			}
 		}
 		/*for (Meta meta : metas) {
@@ -93,8 +102,14 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public ArrayList<Meta> getMetas() {
-		return metas;
+	public ArrayList<Meta> getMetas(int semana) {
+		ArrayList<Meta> metasSemanais = new ArrayList<Meta>();
+		for(Meta meta : metas){
+			if(meta.getSemana() == semana){
+				metasSemanais.add(meta);
+			}
+		}
+		return metasSemanais;
 	}
 
 	public ArrayList<Meta> getMetasAlcancadas() {

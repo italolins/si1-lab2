@@ -1,4 +1,4 @@
-@(mensagem: String)(meta: String)(usuario : Usuario)
+@(mensagem: String)(meta: String)(usuario : Usuario)(semana: Integer)
 
 <html>
 <head>
@@ -30,52 +30,13 @@
 		<p style = "text-align:center">Adicione aqui uma nova meta</p>
 		<input type = "text" placeholder = "Meta" name = "nomeMeta" required/><br>
 		<input type = "text" placeholder = "Descrição" name = "descricao" /><br>
-		<select name = "dia" required>
-			<option value = "1"/>01
-			<option value = "2"/>02
-			<option value = "3"/>03
-			<option value = "4"/>04
-			<option value = "5"/>05
-			<option value = "6"/>06
-			<option value = "7"/>07
-			<option value = "8"/>08
-			<option value = "9"/>09
-			<option value = "10"/>10
-			<option value = "11"/>11
-			<option value = "12"/>12
-			<option value = "13"/>13
-			<option value = "14"/>14
-			<option value = "15"/>15
-			<option value = "16"/>16
-			<option value = "17"/>17
-			<option value = "18"/>18
-			<option value = "19"/>19
-			<option value = "20"/>20
-			<option value = "21"/>21
-			<option value = "22"/>22
-			<option value = "23"/>23
-			<option value = "24"/>24
-			<option value = "25"/>25
-			<option value = "26"/>26
-			<option value = "27"/>27
-			<option value = "28"/>28
-			<option value = "29"/>29
-			<option value = "30"/>30
-			<option value = "31"/>31
-		</select>
-		<select name = "mes" required>
-			<option value = "1"/>Janeiro
-			<option value = "2"/>Fevereiro
-			<option value = "3"/>Março
-			<option value = "4"/>Abril
-			<option value = "5"/>Maio
-			<option value = "6"/>Junho
-			<option value = "7"/>Julho
-			<option value = "8"/>Agosto
-			<option value = "9"/>Setembro
-			<option value = "10"/>Outubro
-			<option value = "11"/>Novembro
-			<option value = "12"/>Dezembro
+		<select name = "semana" required>
+			<option value = "1"/>1° semana
+			<option value = "2"/>2° semana
+			<option value = "3"/>3° semana
+			<option value = "4"/>4° semana
+			<option value = "5"/>5° semana
+			<option value = "6"/>6° semana
 		</select>
 		<select name = "prioridade" required>
 			<option value = "1"/>Alta
@@ -92,8 +53,32 @@
 		
 		<div class = "jumbotron" >
 			<h2 style="text-align: center">Metas</h2>
+			<h3 style = "text-align:center">semana @semana</h3>
 			<div class = "table-responsive">
-		
+				<form class = "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "1">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">1° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "2">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">2° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "3">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">3° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "4">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">4° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "5">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">5° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "6">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">6° semana</button>
+				</form>
 				<table class = "table table-striped">
 					<thead>
 						<tr>
@@ -102,19 +87,20 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for(meta <- usuario.getMetas()){
-							<tr>
+						@for(meta <- usuario.getMetas(semana)){
+							
 							<th>@meta.getPrioridade()</th>
 							<th>@meta.getNomeMeta()</th>
-								
-							<form action="/remove" method = "post">
+							<th>	
+							<form class = "col-lg-2" action="/remove" method = "post">
 								<input type = "hidden" name = "meta" value = @meta.getNomeMeta()>
-								<th><input class="btn btn-xs btn-info" type="submit"  value="Remover">
+								<input class="btn btn-xs btn-info" type="submit"  value="Remover">
 							</form>
-							<form action = "/alcancado" method = "post">
-								<input type = "hidden" name = "meta" value = @meta.getNomeMeta()>
-								<input class="btn btn-xs btn-info" type="submit" value="Alcançado"></th>
+							<form  class = "col-lg-2" action = "/alcancado" method = "post">
+								<input type = "hidden" name = "meta" value = "@meta.getNomeMeta()">
+								<input class="btn btn-xs btn-info" type="submit" value="Alcançado">
 							</form>
+							
 						}
 					</tbody>
 				</table>

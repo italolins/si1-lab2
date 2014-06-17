@@ -4,14 +4,14 @@ package models;
 public class Meta {
 	private String nomeMeta;
 	private String descricao;
-	private int dia,mes,prioridade;
+	private int semana,prioridade;
 
-	public Meta(String nomeMeta, String descricao, int dia, int mes,
-			int prioridade) {
+	
+
+	public Meta(String nomeMeta, String descricao, int semana, int prioridade) {
 		this.nomeMeta = nomeMeta;
 		this.setDescricao(descricao);
-		this.setDia(dia);
-		this.setMes(mes);
+		this.setSemana(semana);
 		this.setPrioridade(prioridade);
 		// TODO Auto-generated constructor stub
 	}
@@ -28,21 +28,7 @@ public class Meta {
 		this.descricao = descricao;
 	}
 
-	public int getDia() {
-		return dia;
-	}
-
-	public void setDia(int dia) {
-		this.dia = dia;
-	}
-
-	public int getMes() {
-		return mes;
-	}
-
-	public void setMes(int mes) {
-		this.mes = mes;
-	}
+	
 
 	public int getPrioridade() {
 		return prioridade;
@@ -50,6 +36,14 @@ public class Meta {
 
 	public void setPrioridade(int prioridade) {
 		this.prioridade = prioridade;
+	}
+	
+	public int getSemana() {
+		return semana;
+	}
+
+	public void setSemana(int semana) {
+		this.semana = semana;
 	}
 	
 	@Override
