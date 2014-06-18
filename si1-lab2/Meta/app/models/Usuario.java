@@ -35,7 +35,11 @@ public class Usuario {
 	}
 
 	public void addMeta(String nomeMeta, String Descricao, int semana, int prioridade) {
-		metas.add(new Meta(nomeMeta,Descricao,semana,prioridade));
+		if(!metas.contains(new Meta(nomeMeta,Descricao,semana,prioridade))){
+			metas.add(new Meta(nomeMeta,Descricao,semana,prioridade));
+		}
+		
+		
 		
 	}
 

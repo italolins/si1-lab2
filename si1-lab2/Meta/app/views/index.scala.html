@@ -26,8 +26,11 @@
 	<div class = "col-lg-4">
 	<form action = "/adicionaMeta" method = "post">
 		<h1 style = "text-align:center">Metas Mak</h2>
-		<div class = "jumbotron" style = "text-align:center">
-		<p style = "text-align:center">Adicione aqui uma nova meta</p>
+		<div class = "panel panel-primary" style = "text-align:center">
+		<div class = "panel-heading">
+		<h2 style = "text-align:center">Adicione aqui uma nova meta</h2>
+		</div>
+		<div class = "panel-body">
 		<input type = "text" placeholder = "Meta" name = "nomeMeta" required/><br>
 		<input type = "text" placeholder = "Descrição" name = "descricao" /><br>
 		<select name = "semana" required>
@@ -45,14 +48,18 @@
 		</select><br>
 		<button class="btn btn-lg btn-info" id = "adicionar" type = "submit">Adicionar</button><br>
 		</div>
+		</div>
 	</form>
 	</div>
 	<div class = "col-lg-4"></div>
 	<br>
 	<div class = "col-lg-6">
 		
-		<div class = "jumbotron" >
+		<div class = "panel panel-primary" >
+			<div class = "panel-heading">
 			<h2 style="text-align: center">Metas</h2>
+			</div>
+			<div class = "panel-body">
 			<h3 style = "text-align:center">semana @semana</h3>
 			<div class = "table-responsive">
 				<form class = "col-lg-2" action="/mostraSemana" method = "post">
@@ -88,7 +95,7 @@
 					</thead>
 					<tbody>
 						@for(meta <- usuario.getMetas(semana)){
-							
+							<tr>
 							<th>@meta.getPrioridade()</th>
 							<th>@meta.getNomeMeta()</th>
 							<th>	
@@ -100,18 +107,24 @@
 								<input type = "hidden" name = "meta" value = "@meta.getNomeMeta()">
 								<input class="btn btn-xs btn-info" type="submit" value="Alcançado">
 							</form>
+							</th>
+							</tr>
 							
 						}
 					</tbody>
 				</table>
 			</div>
 		</div>
+		</div>
 	</div>
 	<div class = "col-lg-6">
-		<div class = "jumbotron">
-			<h2 style = "text-align:center">Metas Alcançadas</h2>
-			<div class = "table-responsive">
-			<table class = "table table-striped">
+		<div class = "panel panel-primary">
+			<div class = "panel-heading">
+				<h2 style = "text-align:center">Metas Alcançadas</h2>
+			</div>
+			<div class = "panel-body">
+				<div class = "table-responsive">
+				<table class = "table table-striped">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -123,9 +136,11 @@
 							<tr>
 							<th>@meta.getPrioridade()</th>
 							<th>@meta.getNomeMeta()</th>
+							</tr>
 						}
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 	
