@@ -1,19 +1,20 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Evento {
 	private String nomeEvento;
 	private String descricao;
 	private int dia;
 	private int mes;
-	private String temas;
+	private ArrayList<String> temas;
 	private ArrayList<Participante> participantes;
 
 
 
 	public Evento(String nomeEvento, String descricao, int dia, int mes,
-			String temas) {
+			ArrayList<String> temas) {
 		// TODO Auto-generated constructor stub
 		this.nomeEvento = nomeEvento;
 		this.descricao = descricao;
@@ -47,11 +48,11 @@ public class Evento {
 		this.mes = mes;
 	}
 
-	public String getTemas() {
+	public ArrayList<String> getTemas() {
 		return temas;
 	}
 
-	public void setTemas(String temas) {
+	public void setTemas(ArrayList<String> temas) {
 		this.temas = temas;
 	}
 
@@ -60,8 +61,10 @@ public class Evento {
 	}
 
 	public void addPresenca(String participante, String email) {
-		// TODO Auto-generated method stub
-		participantes.add(new Participante(participante,email));
+		Participante part = new Participante(participante,email);
+		if(!this.searchParticipante(part)){
+			participantes.add(new Participante(participante,email));
+		}
 		
 	}
 
@@ -71,6 +74,17 @@ public class Evento {
 
 	public void setParticipantes(ArrayList<Participante> participantes) {
 		this.participantes = participantes;
+	}
+	
+	public boolean searchParticipante(Participante part){
+		Iterator<Participante> it = participantes.iterator();
+		while(it.hasNext()){
+			Participante proximoParticipante = it.next();
+			if(proximoParticipante.getEmail().equalsIgnoreCase(part.getEmail())){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -1,4 +1,4 @@
-@(mesagem: String)
+@(mesagem: String)(hack : Hackfest)(filtro : String)
 
 <html>
 <head>
@@ -23,11 +23,80 @@
 </head>
 
 <body>
-	<div class = "col-lg-4"></div>
-	<div class = "col-lg-4">
-		
+	<div class = "navbar navbar-inverse">
+		<div class = "container">
+			<div class = "navbar-haeder">
+				<button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target=".navbar-collapse">
+				</button>
+				<a class = "navbar-brand" >Hackfest</a>
+			</div>
+			<div class = "navbar-collapse collapse">
+				<div class = "nav navbar-nav">
+					<li>
+						<a>Home</a>
+					</li>
+					<li>
+						<a href = "/">Sair</a>
+					</li>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class = "col-lg-4"></div><br>
+	<h1 style = "text-align:center">Hackfest</h2>
+	<div class = "col-lg-2"></div>
+	<div class = "col-lg-8">
+		<div class = "panel panel-primary" >
+			<div class = "panel-heading">
+				<h3 class = "panel-title" style = "text-align:center">Eventos</h3>
+			</div>
+			<div class = "panel-body">
+			<div style = "text-align:center">
+			<form action = "/filtrarUser" method = "post">
+			<p>Filtrar Tema</p>
+			<select name = "tema" required>
+				<option value = "naoFiltrar"/> Não
+				<option value = "tema1"/>Tema 1
+				<option value = "tema2"/>Tema 2
+				<option value = "tema3"/>Tema 3
+				<option value = "tema4"/>Tema 4
+				<option value = "tema5"/>Tema 5
+			</select><br><br>
+			<input class="btn btn-sm btn-info" type="submit"  value="Filtrar">
+			</form>
+			</div>
+			<div class = "table-responsive">
+				
+				<table class = "table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Temas</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for(evento <- hack.getEventos(filtro)){
+							<tr>
+							<form action="/cadastrar" method = "post">
+								<th>@evento.getParticipantes().size()</th>
+								<th>@evento.getNomeEvento()</th>
+								<th>
+									@for(tema <- evento.getTemas()){
+										@tema<br>
+									}
+								<th><input class="btn btn-xs btn-info" type="submit"  value="Participar"></th>
+								</tr>
+								<input type = "hidden" name = "evento" value = @evento.getNomeEvento()>
+								
+							</form>
+						}
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class = "col-lg-2"></div><br>
 </body>
 
 </html>

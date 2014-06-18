@@ -14,8 +14,11 @@ public class Hackfest {
 	}
 
 	public void addNovoEvento(String nomeEvento, String descricao, int dia, int mes,
-			String temas) {
-		eventos.add(new Evento(nomeEvento,descricao,dia,mes,temas));
+			ArrayList<String> temas) {
+		Evento ev = new Evento(nomeEvento,descricao,dia,mes,temas);
+		if(!searchEvento(ev)){
+			eventos.add(ev);
+		}
 	}
 
 	public void addPresencaParaEvento(String nomeEvento, String participante,
@@ -28,6 +31,56 @@ public class Hackfest {
 			}
 		}
 		
+	}
+	
+	public boolean searchEvento(Evento evento){
+		Iterator<Evento> it = eventos.iterator();
+		while(it.hasNext()){
+			Evento proximoEvento = it.next();
+			if(proximoEvento.getNomeEvento().equals(evento.getNomeEvento())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean confirmaPresencaParticipante(String nomeEvento,String nomeParticipante,String email){
+		Iterator<Evento> it = eventos.iterator();
+		while(it.hasNext()){
+			Evento proximoEvento = it.next();
+			if(proximoEvento.getNomeEvento().equals(nomeEvento)){
+				Iterator<Participante> it2 = proximoEvento.getParticipantes().iterator();
+				while(it2.hasNext()){
+					Participante proximoParticipante = it2.next();
+					if(proximoParticipante.getNome().equalsIgnoreCase("nomeParticipante")){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public ArrayList<Evento> getEventos() {
+		return eventos;
+	}
+	
+	public ArrayList<Evento> getEventos(String tema){
+		if(tema.equals("")){
+			return eventos;
+		}else{
+		ArrayList<Evento> eventosTemas = new ArrayList<Evento>();
+		for(Evento evento : eventos){
+			if(evento.getTemas().contains(tema)){
+				eventosTemas.add(evento);
+			}
+		}
+		return eventosTemas;
+		}
+	}
+
+	public void setEventos(ArrayList<Evento> eventos) {
+		this.eventos = eventos;
 	}
 
 }

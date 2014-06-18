@@ -1,7 +1,11 @@
+import java.util.Iterator;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import models.Evento;
 import models.Hackfest;
+import models.Participante;
 
 
 public class TestHackfest {
@@ -21,6 +25,9 @@ public class TestHackfest {
 	@Test
 	public void testaAdicionarPresenca(){
 		hackfest.addPresencaParaEvento("nomeDoEvento","nomeParticipante","email");
+		hackfest.confirmaPresencaParticipante("nomeDoEvento", "nomeParticipante", "email");;
 	}
+	
+	
 
 }

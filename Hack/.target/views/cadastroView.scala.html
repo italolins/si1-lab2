@@ -1,10 +1,10 @@
-@(mesagem: String)
+@(mesagem: String)(evento : String)(cadastroOk : String)
 
 <html>
 <head>
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
 <meta>
-	<title>Hackfest</title>
+	<title>Hackfest Cadastro</title>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,27 +35,37 @@
 					<li>
 						<a>Home</a>
 					</li>
+					<li>
+						<a href = "/user">Eventos</a>
+					</li>
+					<li>
+						<a href = "/">Sair</a>
+					</li>
 				</div>
 			</div>
 		</div>
 	</div>
+	<h1 style = "text-align:center">Hackfest</h2>
 	<div class = "col-lg-4"></div>
 	<div class = "col-lg-4">
-		<h1></h1>
-		<div class = "panel panel-primary" style = "text-align:center">
-		<div class = "panel-heading">
-	 		<h1 style = "text-align:center">Login</h1> 
-	 	</div>
-	 	<div class = "panel-body">
-	 		<input type = "text" placeholder = "Nome" name = "nome" required/><br>
+		<form action = "/cadastro" method = "post">
+			<div class = "panel panel-primary">
+				<div class = "panel-heading">
+					<h2 class = "panel-title" style = "text-align:center">Cadastro</h2>
+				</div>
+			<div class = "panel-body" style = "text-align:center">
+			<h3 style = "text-align:center">Você está prestes a se cadastar para o evento @evento</h3><br>
+			<input type = "text" placeholder = "Nome" name = "nome" required/><br>
 			<input type = "text" placeholder = "e-mail" name = "email" required /><br><br>
-			<a class="btn btn-sm btn-success" href="adm" role="button">Adm</a>
-			<a class="btn btn-sm btn-success" href="user" role="button">User</a>
-		</div>
-		</div>
+			<input type = "hidden" name = "evento" value = @evento><br>
+			<h3 style = "text-align:center">@cadastroOk</h3>
+			<button class="btn btn-lg btn-info" id = "cadastro" type = "submit">Cadastrar</button><br>
+			</div>
+			</div>
+		</form>
 	</div>
-	<div class = "col-lg-4"></div>
-	<br>
+	<div class = "col-lg-4"></div><br>
+	
 </body>
 
 </html>
