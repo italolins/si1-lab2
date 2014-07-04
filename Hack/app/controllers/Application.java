@@ -12,8 +12,55 @@ import views.html.*;
 public class Application extends Controller {
 	
 	private static Hackfest hack = new Hackfest("hack");
-
+	
     public static Result index() {
+    	ArrayList<String> tema1 = new ArrayList<String>();
+    	ArrayList<String> tema2 = new ArrayList<String>();
+    	ArrayList<String> tema3 = new ArrayList<String>();
+    	ArrayList<String> tema4 = new ArrayList<String>();
+    	ArrayList<String> tema5 = new ArrayList<String>();
+    	tema1.add("tema1");
+    	tema1.add("tema3");
+    	tema1.add("tema5");
+    	tema2.add("tema2");
+    	tema2.add("tema3");
+    	tema2.add("tema4");
+    	tema3.add("tema1");
+    	tema3.add("tema5");
+    	tema4.add("tema2");
+    	tema5.add("tema2");
+    	tema5.add("tema3");
+    	tema5.add("tema4");
+    	hack.addNovoEvento("Evento1", "descricao", 1, 1, tema1);
+    	hack.addNovoEvento("Evento2", "descricao", 1, 1, tema2);
+    	hack.addNovoEvento("Evento3", "descricao", 1, 1, tema3);
+    	hack.addNovoEvento("Evento4", "descricao", 1, 1, tema4);
+    	hack.addNovoEvento("Evento5", "descricao", 1, 1, tema5);
+    	hack.addNovoEvento("Evento6", "descricao", 1, 1, tema1);
+    	hack.addNovoEvento("Evento7", "descricao", 1, 1, tema2);
+    	hack.addNovoEvento("Evento8", "descricao", 1, 1, tema2);
+    	hack.addNovoEvento("Evento9", "descricao", 1, 1, tema3);
+    	hack.addNovoEvento("Evento10", "descricao", 1, 1, tema5);
+    	hack.addPresencaParaEvento("Evento3", "Italo", "italo@exemple");
+    	hack.addPresencaParaEvento("Evento3", "Joao", "joao@exemple");
+    	hack.addPresencaParaEvento("Evento3", "Maria", "maria@exemple");
+    	hack.addPresencaParaEvento("Evento3", "Antonio", "antonio@exemple");
+    	hack.addPresencaParaEvento("Evento3", "Ana", "ana@exemple");
+    	hack.addPresencaParaEvento("Evento6", "Raquel", "raquel@exemple");
+    	hack.addPresencaParaEvento("Evento6", "Michele", "michele@exemple");
+    	hack.addPresencaParaEvento("Evento6", "Amy", "amy@exemple");
+    	hack.addPresencaParaEvento("Evento6", "Ieda", "ieda@exemple");
+    	hack.addPresencaParaEvento("Evento6", "Tamires", "tamires@exemple");
+    	hack.addPresencaParaEvento("Evento6", "Alison", "alison@exemple");
+    	hack.addPresencaParaEvento("Evento6", "Renan", "renan@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Jonas", "jonas@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Emanuel", "emanuel@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Ilan", "ilan@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Selma", "selma@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Ivan", "ivan@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Lucas", "lucas@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Emanuela", "emanuela@exemple");
+    	hack.addPresencaParaEvento("Evento10", "Carla", "carla@exemple");
         return ok(index.render("Your new application is ready."));
     }
     

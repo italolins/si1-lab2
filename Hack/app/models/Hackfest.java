@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class Hackfest {
@@ -58,10 +59,12 @@ public class Hackfest {
 				}
 			}
 		}
+		Collections.sort(eventos);
 		return false;
 	}
 
 	public ArrayList<Evento> getEventos() {
+		Collections.sort(eventos);
 		return eventos;
 	}
 	
@@ -75,6 +78,7 @@ public class Hackfest {
 				eventosTemas.add(evento);
 			}
 		}
+		Collections.sort(eventosTemas);
 		return eventosTemas;
 		}
 	}

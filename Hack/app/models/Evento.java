@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Evento {
+public class Evento implements Comparable<Evento> {
 	private String nomeEvento;
 	private String descricao;
 	private int dia;
@@ -85,6 +85,11 @@ public class Evento {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public int compareTo(Evento outroEvento) {
+		return outroEvento.getParticipantes().size() - participantes.size();
 	}
 
 }
