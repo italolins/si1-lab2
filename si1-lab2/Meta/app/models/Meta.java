@@ -1,7 +1,7 @@
 package models;
 
 
-public class Meta {
+public class Meta implements Comparable<Meta>{
 	private String nomeMeta;
 	private String descricao;
 	private int semana,prioridade;
@@ -56,5 +56,8 @@ public class Meta {
 		}
 	} 
 
-	
+	@Override
+	public int compareTo(Meta outraMeta) {
+		return prioridade - outraMeta.getPrioridade();
+	}
 }

@@ -13,6 +13,16 @@ public class Application extends Controller {
 	private static int Semana = 1;
 
     public static Result index() {
+    	usuario.addMeta("tema1", "descricao", 1, 2);
+    	usuario.addMeta("tema2", "descricao", 1, 3);
+    	usuario.addMeta("tema3", "descricao", 1, 1);
+    	usuario.addMeta("tema4", "descricao", 2, 1);
+    	usuario.addMeta("tema5", "descricao", 2, 2);
+    	usuario.addMeta("tema6", "descricao", 2, 2);
+    	usuario.addMeta("tema7", "descricao", 3, 1);
+    	usuario.addMeta("tema8", "descricao", 3, 3);
+    	usuario.addMeta("tema9", "descricao", 3, 2);
+    	usuario.addMeta("tema10", "descricao", 3, 3);
         return ok(index.render("Your new application is ready.",null,usuario,Semana));
     }
     

@@ -1,0 +1,149 @@
+@(mensagem: String)(meta: String)(usuario : Usuario)(semana: Integer)
+
+<html>
+<head>
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+<meta>
+	<title>Metas Mak</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="justified-nav.css" rel="stylesheet">
+
+</head>
+
+<body>
+	
+	<div class = "col-lg-4"></div>
+	<div class = "col-lg-4">
+	<form action = "/adicionaMeta" method = "post">
+		<h1 style = "text-align:center">Metas Mak</h2>
+		<div class = "panel panel-primary" style = "text-align:center">
+		<div class = "panel-heading">
+		<h2 style = "text-align:center">Adicione aqui uma nova meta</h2>
+		</div>
+		<div class = "panel-body">
+		<input type = "text" placeholder = "Meta" name = "nomeMeta" required/><br>
+		<input type = "text" placeholder = "Descrição" name = "descricao" /><br>
+		<select name = "semana" required>
+			<option value = "1"/>1° semana
+			<option value = "2"/>2° semana
+			<option value = "3"/>3° semana
+			<option value = "4"/>4° semana
+			<option value = "5"/>5° semana
+			<option value = "6"/>6° semana
+		</select>
+		<select name = "prioridade" required>
+			<option value = "1"/>Alta
+			<option value = "2"/>Media
+			<option value = "3"/>Baixa
+		</select><br>
+		<button class="btn btn-lg btn-info" id = "adicionar" type = "submit">Adicionar</button><br>
+		</div>
+		</div>
+	</form>
+	</div>
+	<div class = "col-lg-4"></div>
+	<br>
+	<div class = "col-lg-6">
+		
+		<div class = "panel panel-primary" >
+			<div class = "panel-heading">
+			<h2 style="text-align: center">Metas</h2>
+			</div>
+			<div class = "panel-body">
+			<h3 style = "text-align:center">semana @semana</h3>
+			<div class = "table-responsive">
+				<form class = "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "1">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">1° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "2">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">2° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "3">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">3° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "4">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">4° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "5">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">5° semana</button>
+				</form>
+				<form class= "col-lg-2" action="/mostraSemana" method = "post">
+				<input type = "hidden" name = "semana" value = "6">
+				<button class="btn btn-xs btn-info" id = "adicionar" type = "submit">6° semana</button>
+				</form>
+				<table class = "table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for(meta <- usuario.getMetas(semana)){
+							<tr>
+							<th>@meta.getPrioridade()</th>
+							<th>@meta.getNomeMeta()</th>
+							<th>	
+							<form class = "col-lg-2" action="/remove" method = "post">
+								<input type = "hidden" name = "meta" value = @meta.getNomeMeta()>
+								<input class="btn btn-xs btn-info" type="submit"  value="Remover">
+							</form>
+							<form  class = "col-lg-2" action = "/alcancado" method = "post">
+								<input type = "hidden" name = "meta" value = "@meta.getNomeMeta()">
+								<input class="btn btn-xs btn-info" type="submit" value="Alcançado">
+							</form>
+							</th>
+							</tr>
+							
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class = "col-lg-6">
+		<div class = "panel panel-primary">
+			<div class = "panel-heading">
+				<h2 style = "text-align:center">Metas Alcançadas</h2>
+			</div>
+			<div class = "panel-body">
+				<div class = "table-responsive">
+				<table class = "table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for(meta <- usuario.getMetasAlcancadas()){
+							<tr>
+							<th>@meta.getPrioridade()</th>
+							<th>@meta.getNomeMeta()</th>
+							</tr>
+						}
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	
+</body>
+
+</html>

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import javax.persistence.Column;
@@ -37,6 +38,7 @@ public class Usuario {
 	public void addMeta(String nomeMeta, String Descricao, int semana, int prioridade) {
 		if(!metas.contains(new Meta(nomeMeta,Descricao,semana,prioridade))){
 			metas.add(new Meta(nomeMeta,Descricao,semana,prioridade));
+			Collections.sort(metas);
 		}
 		
 		
@@ -78,12 +80,7 @@ public class Usuario {
 				it.remove();
 			}
 		}
-		/*for (Meta meta : metas) {
-			if(nomeMeta.equals(meta.getNomeMeta())){
-				metas.remove(meta);
-				metasAlcancadas.add(meta);
-			}
-		}*/
+		
 	}
 
 	public String getSenha() {
